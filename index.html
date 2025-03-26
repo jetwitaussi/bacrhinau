@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<style>
+#wF1,#wF2,#wA1,#wA2 { width:50%; padding-top: 28.15%; }
+#pannoF,#pannoA { font-size:1em;width:250px;min-height:100px; }
+@media screen and (max-width: 480px) {
+	#wF1,#wF2,#wA1,#wA2 { width:100%; padding-top: 56.15%; }
+	#pannoF,#pannoA { font-size:.5em; width:100px; min-height:60px; } 
+}
+</style>
 </head>
 <body style="margin:0;">
-<div id="wF1" style="position:relative;width:50%;height:0;padding-top:28.15%;background-size: contain;background-repeat: no-repeat;float:left;">
-	<div id="pannoF" style="font-family:Open Sans,sans-serif;line-height: 1.2em;position:absolute;bottom:0;right:0;width:250px;min-height:100px;padding:5px;background:black;color:#fffc00;text-align:center;"><br><br>...</div>
+<div id="wF1" style="position:relative;height:0;background-size: contain;background-repeat: no-repeat;float:left;">
+	<div id="pannoF" style="font-family:Open Sans,sans-serif;line-height: 1.2em;position:absolute;bottom:0;right:0;padding:5px;background:black;color:#fffc00;text-align:center;"><br><br>...</div>
 </div>
-<div id="wF2" style="width:50%;height:0;padding-top:28.15%;background-size: contain;background-repeat: no-repeat;float:left;"></div>
-<div id="wA1" style="position:relative;width:50%;height:0;padding-top:28.15%;background-size: contain;background-repeat: no-repeat;float:left;">
-	<div id="pannoA" style="font-family:Open Sans,sans-serif;line-height: 1.2em;position:absolute;bottom:0;left:0;width:250px;min-height:100px;padding:5px;background:black;color:#fffc00;text-align:center;"><br><br>...</div>
+<div id="wF2" style="height:0;background-size: contain;background-repeat: no-repeat;float:left;"></div>
+<div id="wA1" style="position:relative;height:0;background-size: contain;background-repeat: no-repeat;float:left;">
+	<div id="pannoA" style="font-family:Open Sans,sans-serif;line-height: 1.2em;position:absolute;bottom:0;left:0;padding:5px;background:black;color:#fffc00;text-align:center;"><br><br>...</div>
 </div>
-<div id="wA2" style="width:50%;height:0;padding-top:28.15%;background-size: contain;background-repeat: no-repeat;float:left;"></div>
+<div id="wA2" style="height:0;background-size: contain;background-repeat: no-repeat;float:left;"></div>
 <script>
 $(document).ready(()=>{
 	let load = () => {
