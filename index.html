@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body style="margin:0;">
+<div id="wF1" style="position:relative;width:50%;height:0;padding-top:28.15%;background-size: contain;background-repeat: no-repeat;float:left;">
+	<div id="pannoF" style="font-family:Open Sans,sans-serif;line-height: 1.2em;position:absolute;bottom:0;right:0;width:250px;min-height:100px;padding:5px;background:black;color:#fffc00;text-align:center;"><br><br>...</div>
+</div>
+<div id="wF2" style="width:50%;height:0;padding-top:28.15%;background-size: contain;background-repeat: no-repeat;float:left;"></div>
+<div id="wA1" style="position:relative;width:50%;height:0;padding-top:28.15%;background-size: contain;background-repeat: no-repeat;float:left;">
+	<div id="pannoA" style="font-family:Open Sans,sans-serif;line-height: 1.2em;position:absolute;bottom:0;left:0;width:250px;min-height:100px;padding:5px;background:black;color:#fffc00;text-align:center;"><br><br>...</div>
+</div>
+<div id="wA2" style="width:50%;height:0;padding-top:28.15%;background-size: contain;background-repeat: no-repeat;float:left;"></div>
+<script>
+$(document).ready(()=>{
+	let load = () => {
+		let t = new Date().getTime();
+		$('#wF1').css('background-image', "url('https://inforoute.alsace.eu/webcam67/RHINAU-RF1/lastimage.jpeg?t="+t+"')");
+		$('#wF2').css('background-image', "url('https://inforoute.alsace.eu/webcam67/RHINAU-RF2/lastimage.jpeg?t="+t+"')");
+		$('#wA1').css('background-image', "url('https://inforoute.alsace.eu/webcam67/RHINAU-RA1/lastimage.jpeg?t="+t+"')");
+		$('#wA2').css('background-image', "url('https://inforoute.alsace.eu/webcam67/RHINAU-RA2/lastimage.jpeg?t="+t+"')");
+		$.getJSON('https://api.allorigins.win/raw?url='+encodeURIComponent('https://inforoute.alsace.eu/mod_turbolead/mod/inforoute/index.php?action=384')).done((j)=>{
+			try
+			{
+				if (j.features)
+				{
+					for(let f of j.features) 
+					{
+						let p = f.properties;
+						if (p.titre=="CD67 PMV Rhinau (F)" || p.titre=="CD67 PMV Rhinau (D)")
+						{
+							let F = [];
+							if (p.ligne0_0!='') F.push(p.ligne0_0);
+							if (p.ligne0_1!='') F.push(p.ligne0_1);
+							if (p.ligne1_0!='') F.push(p.ligne1_0);
+							if (p.ligne1_1!='') F.push(p.ligne1_1);
+							if (p.ligne2_0!='') F.push(p.ligne2_0);
+							if (p.ligne2_1!='') F.push(p.ligne2_1);
+							if (p.ligne3_0!='') F.push(p.ligne3_0);
+							if (p.ligne3_1!='') F.push(p.ligne3_1);
+
+							if (p.titre=="CD67 PMV Rhinau (F)") $('#pannoF').html(F.join('<br>'));
+							if (p.titre=="CD67 PMV Rhinau (D)") $('#pannoA').html(F.join('<br>'));
+						}
+					}
+				} else {
+					load();
+				}
+			}
+			catch (e)
+			{
+				load();
+			}
+		}).fail(()=>{
+			load();
+		}); 
+	};
+	load();
+	setTimeout(()=>{load();},60000);
+});
+</script>
+</body>
+</html>
